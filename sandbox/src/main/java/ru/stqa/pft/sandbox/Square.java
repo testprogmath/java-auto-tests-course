@@ -6,4 +6,8 @@ public class Square {
     public Square(double len) {
         this.l=len; //указываем на атрибут объекта (можно даже написать this.l=l, если в аргументах конструктора исправить len на l
     }
+    public double area() {
+        return this.l * this.l;
+    }
+
 }
