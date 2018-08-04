@@ -34,7 +34,7 @@ public class ContactCreationTests {
     }
 
     @Test
-    public void ContactCreationTests() {
+    public void testContactCreation() {
         initNewContact(By.linkText("add new"));
         fillContactForm(new ContactRequiredData("Anna", "Vasileva", "a.vasileva@gmail.com", "1995", "+79992130923"));
         submitContactCreation("//div[@id='content']/form/input[21]");
