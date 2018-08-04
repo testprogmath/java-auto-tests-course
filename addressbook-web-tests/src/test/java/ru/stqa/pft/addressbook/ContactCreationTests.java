@@ -23,14 +23,11 @@ public class ContactCreationTests {
         //указываем, где находится нужная версия FF для работы драйвера
         wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary("C:\\Program Files\\Mozilla FirefoxESR52/firefox.exe"));
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        login();
     }
-    
-    @Test
-    public void ContactCreationTests() {
+
+    private void login() {
         wd.get("http://localhost/addressbook/index.php");
-        wd.findElement(By.name("pass")).click();
-        wd.findElement(By.name("pass")).sendKeys("\\undefined");
-        wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).clear();
         wd.findElement(By.name("user")).sendKeys("admin");
@@ -39,7 +36,21 @@ public class ContactCreationTests {
         wd.findElement(By.name("pass")).clear();
         wd.findElement(By.name("pass")).sendKeys("secret");
         wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
-        wd.findElement(By.linkText("add new")).click();
+    }
+
+    @Test
+    public void ContactCreationTests() {
+        initNewContact(By.linkText("add new"));
+        fillContactForm();
+        submitContactCreation("//div[@id='content']/form/input[21]");
+        //через 10-15 секунд сервер переведет на форму просмотра контактов
+    }
+
+    private void submitContactCreation(String s) {
+        wd.findElement(By.xpath(s)).click();
+    }
+
+    private void fillContactForm() {
         wd.findElement(By.name("firstname")).click();
         wd.findElement(By.name("firstname")).clear();
         wd.findElement(By.name("firstname")).sendKeys("Anna");
@@ -61,9 +72,12 @@ public class ContactCreationTests {
         wd.findElement(By.name("mobile")).click();
         wd.findElement(By.name("mobile")).clear();
         wd.findElement(By.name("mobile")).sendKeys("+79992130923");
-        wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
     }
-    
+
+    private void initNewContact(By add_new) {
+        wd.findElement(add_new).click();
+    }
+
     @AfterMethod
     public void tearDown() {
         wd.quit();
