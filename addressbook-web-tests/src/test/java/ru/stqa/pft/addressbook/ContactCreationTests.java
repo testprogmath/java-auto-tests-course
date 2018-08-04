@@ -10,28 +10,8 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
 
-public class ContactCreationTests {
-    FirefoxDriver wd;
-    
-    @BeforeMethod
-    public void setUp() throws Exception {
-        //указываем, где находится нужная версия FF для работы драйвера
-        wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary("C:\\Program Files\\Mozilla FirefoxESR52/firefox.exe"));
-        wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        login("admin", "secret");
-    }
+public class ContactCreationTests extends TestBase{
 
-    private void login(String user, String password) {
-        wd.get("http://localhost/addressbook/index.php");
-        wd.findElement(By.name("user")).click();
-        wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys(user);
-        wd.findElement(By.cssSelector("label")).click();
-        wd.findElement(By.name("pass")).click();
-        wd.findElement(By.name("pass")).clear();
-        wd.findElement(By.name("pass")).sendKeys(password);
-        wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
-    }
 
     @Test
     public void testContactCreation() {
@@ -75,17 +55,5 @@ public class ContactCreationTests {
         wd.findElement(add_new).click();
     }
 
-    @AfterMethod
-    public void tearDown() {
-        wd.quit();
-    }
-    
-    public static boolean isAlertPresent(FirefoxDriver wd) {
-        try {
-            wd.switchTo().alert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
-    }
+
 }
