@@ -42,8 +42,11 @@ public class TestBase {
         wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
     }
 
-    protected void returnToGroupPage(String s) {
-        goToGroupPage(s);
+    protected void returnToGroupPage() {
+        goToGroupPage();
+    }
+
+    void goToGroupPage() {
     }
 
     protected void submitGroupCreation(String submit) {
@@ -73,5 +76,13 @@ public class TestBase {
     @AfterMethod
     public void tearDown() {
         wd.quit();
+    }
+
+    protected void deleteSelectedGroups(By delete) {
+        wd.findElement(delete).click();
+    }
+
+    protected void selectGroup(By xpath) {
+        wd.findElement(xpath).click();
     }
 }
