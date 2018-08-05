@@ -13,7 +13,7 @@ public class ContactCreationTests extends TestBase{
         app.getContactHelper().initNewContact(By.linkText("add new"));
         app.getContactHelper().fillContactForm(new ContactRequiredData("Anna", "Khvorostyanova", "a.vasileva@gmail.com", "1995", "+79992130923"));
         app.getContactHelper().submitContactCreation("//div[@id='content']/form/input[21]");
-        //через 10-15 секунд сервер переведет на форму просмотра контактов
+        app.getContactHelper().returnToContactsPage();
     }
 
 
