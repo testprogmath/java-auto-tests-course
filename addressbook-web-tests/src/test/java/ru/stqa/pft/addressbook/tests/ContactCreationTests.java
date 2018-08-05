@@ -1,8 +1,9 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.Test;
 
 import org.openqa.selenium.*;
+import ru.stqa.pft.addressbook.ContactRequiredData;
 
 public class ContactCreationTests extends TestBase{
 
