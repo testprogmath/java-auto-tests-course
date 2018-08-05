@@ -7,10 +7,10 @@ public class GroupDeletionTests extends TestBase {
 
     @Test
     public void testGroupDeletion() {
-        goToGroupPage();
-        selectGroup(By.xpath("//div[@id='content']/form/span[1]/input"));
-        deleteSelectedGroups(By.name("delete"));
-        returnToGroupPage();
+        app.goToGroupPage();
+        app.selectGroup(By.xpath("//div[@id='content']/form/span[1]/input"));
+        app.deleteSelectedGroups(By.name("delete"));
+        app.returnToGroupPage();
     }
 
 
