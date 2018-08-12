@@ -45,17 +45,11 @@ public class ContactHelper extends HelperBase {
 
     }
 
-
     public void initNewContact(By add_new) {
         click(add_new);
     }
 
-    public void returnToContactsPage() {
-        click(By.linkText("home page"));
-    }
-    public void goToContactsPage() {
-        click(By.linkText("home"));
-    }
+
 
     public void initContactModification() {
         click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));

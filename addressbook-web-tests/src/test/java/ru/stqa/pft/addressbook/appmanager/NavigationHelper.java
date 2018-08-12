@@ -20,4 +20,11 @@ public class NavigationHelper extends HelperBase {
         }
 
     }
+
+    public void returnToContactsPage() {
+        click(By.linkText("home page"));
+    }
+    public void goToContactsPage() {
+        click(By.linkText("home"));
+    }
 }
