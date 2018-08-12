@@ -21,9 +21,7 @@ public class NavigationHelper extends HelperBase {
 
     }
 
-    public void returnToContactsPage() {
-        click(By.linkText("home page"));
-    }
+
     public void goToHomePage() {
         if (isElementPresent(By.id("maintable"))) {
             return;

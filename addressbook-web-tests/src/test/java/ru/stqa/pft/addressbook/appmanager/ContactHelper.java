@@ -48,7 +48,9 @@ public class ContactHelper extends HelperBase {
     public void initNewContact(By add_new) {
         click(add_new);
     }
-
+    public void returnToContactsPage() {
+        click(By.linkText("home page"));
+    }
 
 
     public void initContactModification() {
@@ -65,5 +67,16 @@ public class ContactHelper extends HelperBase {
 
     public void submitContactDeletion() {
         click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+    }
+
+    public void createAContact(ContactRequiredData contact) {
+        initNewContact(By.linkText("add new"));
+        fillContactForm(contact, true);
+        submitContactCreation("//div[@id='content']/form/input[21]");
+        returnToContactsPage();
+    }
+
+    public boolean isThereAnyContact() {
+        return isElementPresent(By.name("entry"));
     }
 }
