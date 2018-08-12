@@ -1,8 +1,11 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactRequiredData;
 
 public class ContactHelper extends HelperBase {
@@ -15,7 +18,7 @@ public class ContactHelper extends HelperBase {
         click(By.xpath(s));
     }
 
-    public void fillContactForm(ContactRequiredData contactRequiredData) {
+    public void fillContactForm(ContactRequiredData contactRequiredData, boolean creation) {
         type(By.name("firstname"), contactRequiredData.getFirstName());
         type(By.name("lastname"), contactRequiredData.getLastName());
         type(By.name("email"), contactRequiredData.getEmail());
@@ -31,7 +34,17 @@ public class ContactHelper extends HelperBase {
         type(By.name("byear"), contactRequiredData.getBirthYear());
         */
         type(By.name("mobile"), contactRequiredData.getMobilePhone());
+
+        if (creation) {
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactRequiredData.getGroup());
+        }
+        else {
+            Assert.assertFalse(isElementPresent(By.name("new_group")));
+        }
+
+
     }
+
 
     public void initNewContact(By add_new) {
         click(add_new);
@@ -40,7 +53,6 @@ public class ContactHelper extends HelperBase {
     public void returnToContactsPage() {
         click(By.linkText("home page"));
     }
-
     public void goToContactsPage() {
         click(By.linkText("home"));
     }

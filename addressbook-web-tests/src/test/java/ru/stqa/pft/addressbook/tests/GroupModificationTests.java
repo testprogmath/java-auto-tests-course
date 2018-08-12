@@ -11,7 +11,7 @@ public class GroupModificationTests extends TestBase {
         app.getNavigationHelper().goToGroupPage();
         app.getGroupHelper().selectGroup(By.xpath("//div[@id='content']/form/span[1]/input"));
         app.getGroupHelper().initGroupModification();
-        app.getGroupHelper().fillGroupForm(new GroupData("Группа1_Изменение", "Тест2_Изменение", "Тест3"));
+        app.getGroupHelper().fillGroupForm(new GroupData("Группа1", "Тест2_Изменение", "Тест3"));
         app.getGroupHelper().submitGroupModification();
         app.getGroupHelper().returnToGroupPage();
     }

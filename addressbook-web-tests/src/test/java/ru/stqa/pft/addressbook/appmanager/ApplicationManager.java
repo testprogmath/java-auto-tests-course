@@ -34,7 +34,7 @@ public class ApplicationManager  {
         else if (browser.equals(BrowserType.IE)) {
             wd = new InternetExplorerDriver();
         }
-        wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+       // wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS); //поиск отсутствующих элементов
         wd.get("http://localhost/addressbook/group.php");
         contactHelper = new ContactHelper(wd);
         groupHelper = new GroupHelper(wd);

@@ -10,7 +10,7 @@ public class GroupCreationsTests extends TestBase{
     public void testGroupCreations() {
         app.getNavigationHelper().goToGroupPage();
         app.getGroupHelper().initGroupCreation("new");
-        app.getGroupHelper().fillGroupForm(new GroupData("Группа1", "Тест2", "Тест3"));
+        app.getGroupHelper().fillGroupForm(new GroupData("Группа1", null, "Тест3")); //оставляем то значение, которое уже было введено в header и footer
         app.getGroupHelper().submitGroupCreation("submit");
         app.getGroupHelper().returnToGroupPage();
 
