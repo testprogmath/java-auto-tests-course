@@ -7,14 +7,20 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactRequiredData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
+import java.io.File;
+
 public class ContactCreationTests extends TestBase{
 
     @Test
     public void testContactCreation() {
         app.goTo().homePage();
         Contacts before = app.contact().all();
+        File photo = new File("src/test/resources/pict.png");
         ContactRequiredData contact = new ContactRequiredData()
-                .withFirstName("Anna").withLastName("Khvorostyanova").withEmail("a.vasileva@gmail.com").withBirthYear("1995").withMobilePhone("+79992130923").withGroup("Группа1").withWorkPhone("8945334532").withHomePhone("56434354");
+                .withFirstName("Anna").withLastName("Khvorostyanova").withEmail("a.vasileva@gmail.com")
+                .withPhoto(photo)
+                .withBirthYear("1995").withMobilePhone("+79992130923").withGroup("Группа1")
+                .withWorkPhone("8945334532").withHomePhone("56434354");
         app.contact().create(contact);
         Assert.assertEquals(app.contact().count(), before.size()+1);
         Contacts after = app.contact().all();
