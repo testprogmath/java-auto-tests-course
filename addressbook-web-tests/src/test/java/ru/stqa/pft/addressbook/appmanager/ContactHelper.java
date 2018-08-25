@@ -8,9 +8,7 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactRequiredData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -120,4 +118,7 @@ public class ContactHelper extends HelperBase {
 
     }
     private Contacts contactCache = null;
+    public int count() {
+        return wd.findElements(By.name("selected[]")).size();
+    }
 }
