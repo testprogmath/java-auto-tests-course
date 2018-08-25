@@ -1,10 +1,8 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactRequiredData;
@@ -18,7 +16,7 @@ public class ContactHelper extends HelperBase {
         super(wd);
     }
 
-    public void submitContactCreation(String s) {
+    public void submitCreation(String s) {
         click(By.xpath(s));
     }
 
@@ -77,7 +75,7 @@ public class ContactHelper extends HelperBase {
     public void create(ContactRequiredData contact) {
         initNewContact(By.linkText("add new"));
         fillContactForm(contact, true);
-        submitContactCreation("//div[@id='content']/form/input[21]");
+        submitCreation("//div[@id='content']/form/input[21]");
         returnToContactsPage();
     }
 
@@ -97,9 +95,17 @@ public class ContactHelper extends HelperBase {
             String address = td.get(3).getText();
             String email = td.get(4).getText();
             String phone = td.get(5).getText();
-            ContactRequiredData contact = new ContactRequiredData(id, name, lastName,  email, null, phone, null);
+            ContactRequiredData contact = new ContactRequiredData()
+                    .withId(id).withFirstName(name).withLastName(lastName).withEmail(email).withMobilePhone(phone);
             contacts.add(contact);
         }
         return contacts;
+    }
+    public void modify(int index, ContactRequiredData contact) {
+        select(index);
+        initModification();
+        fillContactForm(contact, false);
+        submitModification();
+        returnToContactsPage();
     }
 }

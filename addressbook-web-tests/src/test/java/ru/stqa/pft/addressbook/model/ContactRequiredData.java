@@ -1,39 +1,50 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactRequiredData {
-    private int id;
-    private final String firstName;
-    private final String lastName;
-    private final String email;
-    private final String birthYear;
-    private final String mobilePhone;
+    private int id=Integer.MAX_VALUE;
+    private String firstName;
+    private  String lastName;
+    private  String email;
+    private  String birthYear;
+    private  String mobilePhone;
     private String group;
 
-    public ContactRequiredData(int id, String firstName, String lastName, String email, String birthYear, String mobilePhone, String group) {
-        this.id = id;
+    public ContactRequiredData withFirstName(String firstName) {
         this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.birthYear = birthYear;
-        this.mobilePhone = mobilePhone;
-        this.group = group;
+        return this;
     }
-    public ContactRequiredData(String firstName, String lastName, String email, String birthYear, String mobilePhone, String group) {
-        this.id = Integer.MAX_VALUE;
-        this.firstName = firstName;
+
+    public ContactRequiredData withLastName(String lastName) {
         this.lastName = lastName;
-        this.email = email;
+        return this;
+    }
+    public ContactRequiredData withBirthYear(String birthYear) {
         this.birthYear = birthYear;
+        return this;
+    }
+    public ContactRequiredData withEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public ContactRequiredData withMobilePhone(String mobilePhone) {
         this.mobilePhone = mobilePhone;
+        return this;
+    }
+
+    public ContactRequiredData withGroup(String group) {
         this.group = group;
+        return this;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public ContactRequiredData withId(int id) {
+
         this.id = id;
+        return this;
     }
 
     public String getFirstName() {

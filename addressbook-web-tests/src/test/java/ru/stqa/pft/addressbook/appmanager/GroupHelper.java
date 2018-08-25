@@ -62,13 +62,6 @@ public class GroupHelper extends HelperBase{
         submitGroupModification();
         returnToGroupPage();
     }
-    public boolean isThereAnyGroup() {
-        return isElementPresent(By.name("selected[]"));
-    }
-
-    public int getGroupCount() {
-        return wd.findElements(By.name("selected[]")).size();
-    }
 
     public List<GroupData> list() {
         List<GroupData> groups = new ArrayList<GroupData>();
@@ -76,7 +69,7 @@ public class GroupHelper extends HelperBase{
         for (WebElement element: elements){
             String name = element.getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            GroupData group = new GroupData(id, name, null, null);
+            GroupData group = new GroupData().withId(id).withName(name);
             groups.add(group);
         }
         return groups;

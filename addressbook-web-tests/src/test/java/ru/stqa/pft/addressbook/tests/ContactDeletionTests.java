@@ -11,7 +11,8 @@ public class ContactDeletionTests extends TestBase {
     public void testContactDeletion() {
         app.goTo().homePage();
         if (app.contact().list().size()==0) {
-            app.contact().create(new ContactRequiredData("Anna", "Khvorostyanova", "a.vasileva@gmail.com", "1995", "+79992130923", "Группа1"));
+            ContactRequiredData contact = new ContactRequiredData()
+                    .withFirstName("Anna").withLastName("Khvorostyanova").withEmail("a.vasileva@gmail.com").withBirthYear("1995").withMobilePhone("+79992130923").withGroup("Группа1");
         }
         List<ContactRequiredData> before = app.contact().list();
         app.contact().select(before.size() - 1);
