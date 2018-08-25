@@ -91,11 +91,12 @@ public class ContactHelper extends HelperBase {
             String lastName = td.get(1).getText();
             String name = td.get(2).getText();
             String address = td.get(3).getText();
-            String email = td.get(4).getText();
+            String allEmails = td.get(4).getText();
             //String[] phones = td.get(5).getText().split("\n");
             String allPhones = td.get(5).getText();
             ContactRequiredData contact = new ContactRequiredData()
-                    .withId(id).withFirstName(name).withLastName(lastName).withEmail(email).withAllPhones(allPhones);
+                    .withId(id).withFirstName(name).withLastName(lastName)
+                    .withAddress(address).withAllEmails(allEmails).withAllPhones(allPhones);
             contactCache.add(contact);
         }
         return contactCache;
@@ -129,11 +130,16 @@ public class ContactHelper extends HelperBase {
         initContactModificationById(contact.getId());
         String firstName = wd.findElement(By.name("firstname")).getAttribute("value");
         String lastName = wd.findElement(By.name("lastname")).getAttribute("value");
+        String address = wd.findElement(By.name("address")).getAttribute("value");
         String homePhone = wd.findElement(By.name("home")).getAttribute("value");
         String mobilePhone = wd.findElement(By.name("mobile")).getAttribute("value");
         String workPhone = wd.findElement(By.name("work")).getAttribute("value");
+        String email = wd.findElement(By.name("email")).getAttribute("value");
+        String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+        String email3 = wd.findElement(By.name("email3")).getAttribute("value");
         wd.navigate().back();
         return new ContactRequiredData().withId(contact.getId()).withFirstName(firstName).withLastName(lastName)
+                .withAddress(address).withEmail(email).withEmail2(email2).withEmail3(email3)
                 .withMobilePhone(mobilePhone).withHomePhone(homePhone).withWorkPhone(workPhone);
 
     }

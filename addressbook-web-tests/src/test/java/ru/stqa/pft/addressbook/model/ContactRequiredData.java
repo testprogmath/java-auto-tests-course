@@ -10,13 +10,32 @@ public class ContactRequiredData {
     private String group;
     private String homePhone;
     private String workPhone;
+    private String address;
+    private String allEmails;
+    private String allPhones;
+    private String email2;
+
+    public String getEmail2() {
+        return email2;
+    }
+
+    public String getEmail3() {
+        return email3;
+    }
+
+    private String email3;
 
     public String getAllPhones() {
         return allPhones;
     }
 
+    public String getAddress() {
+        return address;
+    }
 
-    private String allPhones;
+    public String getAllEmails() {
+        return allEmails;
+    }
 
     public ContactRequiredData withFirstName(String firstName) {
         this.firstName = firstName;
@@ -35,7 +54,10 @@ public class ContactRequiredData {
         this.email = email;
         return this;
     }
-
+    public ContactRequiredData withAllEmails(String allEmails) {
+        this.allEmails = allEmails;
+        return this;
+    }
     public ContactRequiredData withMobilePhone(String mobilePhone) {
         this.mobilePhone = mobilePhone;
         return this;
@@ -122,6 +144,20 @@ public class ContactRequiredData {
 
     public ContactRequiredData withAllPhones(String allPhones) {
         this.allPhones = allPhones;
+        return this;
+    }
+
+    public ContactRequiredData withAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
+    public ContactRequiredData withEmail2(String email2) {
+        this.email2 = email2;
+        return this;
+    }
+    public ContactRequiredData withEmail3(String email3) {
+        this.email3 = email3;
         return this;
     }
 }

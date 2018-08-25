@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ContactPhoneTests extends TestBase {
+public class ContactListTests extends TestBase {
 
     @Test
     public void contactTestPhones() {
@@ -21,9 +21,33 @@ public class ContactPhoneTests extends TestBase {
        // assertThat(contact.getWorkPhone(), equalTo(cleaned(contactInfoFromEditForm.getWorkPhone())));
     }
 
+    @Test
+    public void contactEmailsTests(){
+        app.goTo().homePage();
+        ContactRequiredData contact = app.contact().all().iterator().next();
+        ContactRequiredData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+        assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
+    }
+
+    @Test
+    public void contactAddressTests(){
+        app.goTo().homePage();
+        ContactRequiredData contact = app.contact().all().iterator().next();
+        ContactRequiredData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+        assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
+    }
+
+
+
+    private String mergeEmails(ContactRequiredData contact) {
+        return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
+                .stream().filter((s) -> !s.equals(""))
+                .collect(Collectors.joining("\n"));
+    }
+
     private String mergePhones(ContactRequiredData contact) {
         return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
-                .stream().filter((s) -> !s.equals("")).map(ContactPhoneTests::cleaned)
+                .stream().filter((s) -> !s.equals("")).map(ContactListTests::cleaned)
                 .collect(Collectors.joining("\n"));
     }
 
