@@ -92,10 +92,10 @@ public class ContactHelper extends HelperBase {
             String name = td.get(2).getText();
             String address = td.get(3).getText();
             String email = td.get(4).getText();
-            String[] phones = td.get(5).getText().split("\n");
+            //String[] phones = td.get(5).getText().split("\n");
+            String allPhones = td.get(5).getText();
             ContactRequiredData contact = new ContactRequiredData()
-                    .withId(id).withFirstName(name).withLastName(lastName).withEmail(email).withHomePhone(phones[0])
-                    .withMobilePhone(phones[1]).withWorkPhone(phones[2]);
+                    .withId(id).withFirstName(name).withLastName(lastName).withEmail(email).withAllPhones(allPhones);
             contactCache.add(contact);
         }
         return contactCache;

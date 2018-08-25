@@ -11,6 +11,13 @@ public class ContactRequiredData {
     private String homePhone;
     private String workPhone;
 
+    public String getAllPhones() {
+        return allPhones;
+    }
+
+
+    private String allPhones;
+
     public ContactRequiredData withFirstName(String firstName) {
         this.firstName = firstName;
         return this;
@@ -113,4 +120,8 @@ public class ContactRequiredData {
                 '}';
     }
 
+    public ContactRequiredData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
 }
