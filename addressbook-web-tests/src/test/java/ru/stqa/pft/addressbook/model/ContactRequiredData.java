@@ -8,6 +8,8 @@ public class ContactRequiredData {
     private  String birthYear;
     private  String mobilePhone;
     private String group;
+    private String homePhone;
+    private String workPhone;
 
     public ContactRequiredData withFirstName(String firstName) {
         this.firstName = firstName;
@@ -31,7 +33,15 @@ public class ContactRequiredData {
         this.mobilePhone = mobilePhone;
         return this;
     }
+    public ContactRequiredData withHomePhone(String homePhone) {
+        this.homePhone = homePhone;
+        return this;
+    }
 
+    public ContactRequiredData withWorkPhone(String workPhone) {
+        this.workPhone = workPhone;
+        return this;
+    }
     public ContactRequiredData withGroup(String group) {
         this.group = group;
         return this;
@@ -69,6 +79,14 @@ public class ContactRequiredData {
 
     public String getGroup() {
         return group;
+    }
+
+    public String getHomePhone() {
+        return homePhone;
+    }
+
+    public String getWorkPhone() {
+        return workPhone;
     }
 
     @Override
