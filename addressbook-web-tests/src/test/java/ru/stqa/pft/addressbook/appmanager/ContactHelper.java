@@ -79,7 +79,10 @@ public class ContactHelper extends HelperBase {
     }
 
     public Contacts all() {
-        Contacts contacts = new Contacts();
+        if (contactCache!=null) {
+            return new Contacts(contactCache);
+        }
+        contactCache = new Contacts();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element: elements){
             /* создаем список, элементы находятся в следующем порядке: чек-бокс(0), Фамилия(1), Имя(2), адрес(3), e-mail(4), телефон(5), прочие картинки */
@@ -92,15 +95,16 @@ public class ContactHelper extends HelperBase {
             String phone = td.get(5).getText();
             ContactRequiredData contact = new ContactRequiredData()
                     .withId(id).withFirstName(name).withLastName(lastName).withEmail(email).withMobilePhone(phone);
-            contacts.add(contact);
+            contactCache.add(contact);
         }
-        return contacts;
+        return contactCache;
     }
     public void modify(ContactRequiredData contact) {
         selectContactById(contact.getId());
         initModification();
         fillContactForm(contact, false);
         submitModification();
+        contactCache = null;
         returnToContactsPage();
     }
 
@@ -112,6 +116,8 @@ public class ContactHelper extends HelperBase {
         selectContactById(contact.getId());
         submitDeletion();
         submitDecision();
+        contactCache = null;
 
     }
+    private Contacts contactCache = null;
 }
