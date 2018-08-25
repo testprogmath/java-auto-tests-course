@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactRequiredData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.HashSet;
 import java.util.List;
@@ -77,8 +78,8 @@ public class ContactHelper extends HelperBase {
         returnToContactsPage();
     }
 
-    public Set<ContactRequiredData> all() {
-        Set<ContactRequiredData> contacts = new HashSet<>();
+    public Contacts all() {
+        Contacts contacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element: elements){
             /* создаем список, элементы находятся в следующем порядке: чек-бокс(0), Фамилия(1), Имя(2), адрес(3), e-mail(4), телефон(5), прочие картинки */
@@ -105,5 +106,12 @@ public class ContactHelper extends HelperBase {
 
     public void selectContactById(int id) {
         wd.findElement(By.cssSelector("input[value = '"+id+"']")).click();
+    }
+
+    public void delete(ContactRequiredData contact) {
+        selectContactById(contact.getId());
+        submitDeletion();
+        submitDecision();
+
     }
 }
