@@ -57,6 +57,7 @@ public class GroupHelper extends HelperBase{
         initGroupCreation("new");
         fillGroupForm(group); //null - оставляем то значение, которое уже было введено в header и footer
         submitGroupCreation("submit");
+        groupCache = null;
         returnToGroupPage();
     }
     public void modify(GroupData group) {
