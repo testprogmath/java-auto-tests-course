@@ -59,8 +59,9 @@ public class ContactHelper extends HelperBase {
     }
 
 
-    public void initModification() {
-        click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+    public void initModification(int id) {
+
+        click(By.xpath("//tr/td[input[@value='"+id+"']]/../td[8]/a/img[@title='Edit']"));
     }
 
     public void submitModification() {
@@ -104,8 +105,8 @@ public class ContactHelper extends HelperBase {
         return contactCache;
     }
     public void modify(ContactRequiredData contact) {
-        selectContactById(contact.getId());
-        initModification();
+        //selectContactById(contact.getId());
+        initModification(contact.getId());
         fillContactForm(contact, false);
         submitModification();
         contactCache = null;
