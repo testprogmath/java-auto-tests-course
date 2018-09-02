@@ -3,8 +3,6 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactRequiredData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
@@ -39,14 +37,14 @@ public class ContactHelper extends HelperBase {
         type(By.name("mobile"), contactRequiredData.getMobilePhone());
         type(By.name("home"), contactRequiredData.getHomePhone());
         type(By.name("work"), contactRequiredData.getWorkPhone());
-
+/*
         if (creation) {
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactRequiredData.getGroup());
         }
         else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
-
+*/
 
     }
 
@@ -60,8 +58,7 @@ public class ContactHelper extends HelperBase {
 
 
     public void initModification(int id) {
-
-        click(By.xpath("//tr/td[input[@value='"+id+"']]/../td[8]/a/img[@title='Edit']"));
+        click(By.xpath("//tr/td[input[@value='"+id+"']]/../td[8]/a"));
     }
 
     public void submitModification() {
@@ -78,6 +75,7 @@ public class ContactHelper extends HelperBase {
         initNewContact(By.linkText("add new"));
         fillContactForm(contact, true);
         submitCreation("//div[@id='content']/form/input[21]");
+        contactCache = null;
         returnToContactsPage();
     }
 

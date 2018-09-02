@@ -14,6 +14,7 @@
     <lastName>footer 2</lastName>
     <mobilePhone>+74543345432</mobilePhone>
   </Contact>
+  <!--
   <Contact>
     <firstName>test 3</firstName>
     <lastName>footer 3</lastName>
@@ -99,4 +100,5 @@
     <lastName>footer 19</lastName>
     <mobilePhone>+745433454319</mobilePhone>
   </Contact>
+  -->
 </list>
