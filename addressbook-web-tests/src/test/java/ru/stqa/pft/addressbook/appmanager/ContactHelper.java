@@ -22,7 +22,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("firstname"), contactRequiredData.getFirstName());
         type(By.name("lastname"), contactRequiredData.getLastName());
         type(By.name("email"), contactRequiredData.getEmail());
-        attach(By.name("photo"), contactRequiredData.getPhoto());
+        //attach(By.name("photo"), contactRequiredData.getPhoto());
         /*
         if (!wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[20]")).isSelected()) {
             //выбираем день из выпадающего списка для дня рождения

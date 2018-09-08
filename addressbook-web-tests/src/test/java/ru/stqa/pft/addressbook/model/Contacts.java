@@ -2,21 +2,24 @@ package ru.stqa.pft.addressbook.model;
 
 import com.google.common.collect.ForwardingSet;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Contacts extends ForwardingSet<ContactRequiredData> {
 
     private Set<ContactRequiredData> delegate;
-
-    public Contacts (Contacts contacts) {
-
-        this.delegate = new HashSet<ContactRequiredData>(contacts.delegate);
-    }
-
     public Contacts() {
         this.delegate = new HashSet<ContactRequiredData>();
     }
+    public Contacts(Contacts contacts) {
+
+        this.delegate = new HashSet<ContactRequiredData>(contacts.delegate);
+    }
+    public Contacts(Collection<ContactRequiredData> contacts) {
+        this.delegate = new HashSet<ContactRequiredData>(contacts);
+    }
+
     @Override
     protected Set<ContactRequiredData> delegate() {
 
@@ -33,4 +36,5 @@ public class Contacts extends ForwardingSet<ContactRequiredData> {
         contacts.remove(contact);
         return contacts;
     }
+
 }

@@ -10,7 +10,6 @@ import ru.stqa.pft.addressbook.model.ContactRequiredData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,11 +40,11 @@ public class ContactCreationTests extends TestBase{
     @Test (dataProvider = "validContacts")
     public void testContactCreation(ContactRequiredData contact) {
         app.goTo().homePage();
-        Contacts before = app.contact().all();
-        File photo = new File("src/test/resources/pict.png");
+        Contacts before = app.db().contacts();
+        //File photo = new File("src/test/resources/pict.png");
         app.contact().create(contact);
         Assert.assertEquals(app.contact().count(), before.size()+1);
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         //ставим свежесозданный id-шник, чтобы заменить дефолтный
         MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.withAdded(
                 contact.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId()))));
