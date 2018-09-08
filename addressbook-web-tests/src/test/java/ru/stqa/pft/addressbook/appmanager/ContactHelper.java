@@ -3,6 +3,8 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactRequiredData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
@@ -22,7 +24,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("firstname"), contactRequiredData.getFirstName());
         type(By.name("lastname"), contactRequiredData.getLastName());
         type(By.name("email"), contactRequiredData.getEmail());
-        //attach(By.name("photo"), contactRequiredData.getPhoto());
+        attach(By.name("photo"), contactRequiredData.getPhoto());
         /*
         if (!wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[20]")).isSelected()) {
             //выбираем день из выпадающего списка для дня рождения
@@ -37,14 +39,16 @@ public class ContactHelper extends HelperBase {
         type(By.name("mobile"), contactRequiredData.getMobilePhone());
         type(By.name("home"), contactRequiredData.getHomePhone());
         type(By.name("work"), contactRequiredData.getWorkPhone());
-/*
+
         if (creation) {
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactRequiredData.getGroup());
-        }
-        else {
+            if(contactRequiredData.getGroups().size() > 0)
+                Assert.assertTrue(contactRequiredData.getGroups().size() == 1);
+            new Select(wd.findElement(By.name("new_group")))
+                    .selectByVisibleText(contactRequiredData.getGroups().iterator().next().getName());
+        } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
-*/
+
 
     }
 

@@ -22,8 +22,7 @@ public class ContactModificationTests extends TestBase {
                     .withLastName("Khvorostyanova")
                     .withEmail("a.vasileva@gmail.com")
                     .withBirthYear("1995")
-                    .withMobilePhone("+79992130923")
-                    .withGroup("Группа1");
+                    .withMobilePhone("+79992130923");
         }
     }
     @Test
