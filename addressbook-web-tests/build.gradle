@@ -12,7 +12,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.5';
     compile 'ch.qos.logback:logback:0.5';
     compile 'ch.qos.logback:logback-classic:1.2.3';
-
+    compile 'mysql:mysql-connector-java:8.0.12';
 
 }
 
