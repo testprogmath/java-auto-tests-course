@@ -48,13 +48,15 @@ public class ApplicationManager {
   }
 
   public String getProperty(String key) {
-    return properties.getProperty(key);
+      return properties.getProperty(key);
   }
 
 
   public DbHelper db() {
-    return DbHelper;
+      return DbHelper;
   }
-
+    public HttpSession newSession() {
+        return new HttpSession(this);
+    }
 
 }
