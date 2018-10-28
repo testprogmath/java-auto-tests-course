@@ -28,6 +28,7 @@ public class ContactDeletionTests extends TestBase {
                     .withMobilePhone("+79992130923")
                     .inGroup(groups.iterator().next());
             app.goTo().homePage();
+            app.contact().create(contact);
         }
     }
 
