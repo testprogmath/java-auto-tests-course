@@ -45,11 +45,14 @@ public class GroupData {
         result = 31 * result + (footer != null ? footer.hashCode() : 0);
         return result;
     }
-
+/*
     public Set<ContactRequiredData> getContacts() {
         return new Contacts(contacts);
     }
-
+*/
+public Contacts getContacts() {
+    return new Contacts(contacts);
+}
     @Expose
     @Column(name = "group_header")
     @Type(type = "text")
