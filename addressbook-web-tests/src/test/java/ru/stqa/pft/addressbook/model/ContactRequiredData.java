@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
@@ -17,8 +18,10 @@ public class ContactRequiredData {
     @Id
     private int id=Integer.MAX_VALUE;
     @Column
+    @Expose
     private String firstName;
     @Column
+    @Expose
     private  String lastName;
     @Column(name = "email")
     @Type(type = "text")
