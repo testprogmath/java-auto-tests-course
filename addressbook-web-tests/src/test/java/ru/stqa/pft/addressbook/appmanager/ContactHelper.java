@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactRequiredData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -116,7 +117,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void selectContactById(int id) {
-        wd.findElement(By.cssSelector("input[value = '"+id+"']")).click();
+        wd.findElement(By.cssSelector("input[value='"+ id +"']")).click();
     }
 
     public void delete(ContactRequiredData contact) {
@@ -151,5 +152,43 @@ public class ContactHelper extends HelperBase {
 
     private void initContactModificationById(int id) {
         wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
+    }
+
+    public void addContactToGroup(ContactRequiredData contact, GroupData group) {
+        selectContactById(contact.getId());
+        addContactToGroup(group);
+        clickToAddGroup();
+        contactCache = null;
+        returnToGroupPage(group.getId());
+    }
+    private void addContactToGroup(GroupData group) {
+        new Select(wd.findElement(By.name("to_group")))
+                .selectByVisibleText(group.getName());
+    }
+    private void clickToAddGroup() {
+        click(By.name("add"));
+    }
+    private void returnToGroupPage(int id) {
+        wd.findElement(By.cssSelector(String.format("a[href='./?group=%s']", id))).click();
+    }
+
+    public void removeGroup(ContactRequiredData contact, GroupData group) {
+        selectGroup(group);
+        selectContactById(contact.getId());
+        removeGroupFromContact();
+        contactCache = null;
+        returnToGroupPage(group.getId());
+        returnToGroupListPage();
+    }
+    private void selectGroup(GroupData group) {
+        new Select(wd.findElement(By.name("group")))
+                .selectByVisibleText(group.getName());
+    }
+    private void removeGroupFromContact() {
+        click(By.name("remove"));
+    }
+    private void returnToGroupListPage() {
+        new Select(wd.findElement(By.name("group")))
+                .selectByVisibleText("[all]");
     }
 }
