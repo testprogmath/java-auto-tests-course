@@ -158,8 +158,8 @@ public class ContactHelper extends HelperBase {
         selectContactById(contact.getId());
         addContactToGroup(group);
         clickToAddGroup();
-        contactCache = null;
-        returnToGroupPage(group.getId());
+        //contactCache = null;
+        //returnToGroupPage(group.getId());
     }
     private void addContactToGroup(GroupData group) {
         new Select(wd.findElement(By.name("to_group")))

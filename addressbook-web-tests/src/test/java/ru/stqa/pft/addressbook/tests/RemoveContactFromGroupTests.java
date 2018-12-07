@@ -10,6 +10,8 @@ import ru.stqa.pft.addressbook.model.Groups;
 import java.io.File;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class RemoveContactFromGroupTests extends TestBase{
@@ -45,22 +47,23 @@ public class RemoveContactFromGroupTests extends TestBase{
         Contacts contacts = app.db().contacts();
         ContactRequiredData contact = contacts.iterator().next();
 
-        int beforeGroups = contact.getGroups().size();
-        System.out.println("beforeGroup " + beforeGroups);
+
+        //System.out.println("beforeGroup " + beforeGroups);
         Groups groups = app.db().groups();
         GroupData group = groups.iterator().next();
         app.goTo().homePage();
-        if (beforeGroups == 0) {
+        if (!contact.getGroups().equals(group)){
+            app.goTo().homePage();
             app.contact().addContactToGroup(contact, group);
-            beforeGroups = contact.getGroups().size();
-
-            app.contact().removeGroup(contact, group);
-        } else {
-            group = contact.getGroups().iterator().next();
-            app.contact().removeGroup(contact, group);
         }
+        app.db().refresh(contact);
+        int beforeGroups = contact.getGroups().size();
+        app.goTo().homePage();
+        app.contact().removeGroup(contact,group);
+        app.db().refresh(contact);
         int afterGroups = contact.getGroups().size();
 
-        assertThat(afterGroups, equalTo(beforeGroups));
+        assertThat(afterGroups, equalTo(beforeGroups-1));
+        assertThat(contact.getGroups(), not(hasItem(group)));
     }
 }
