@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTests extends TestBase{
@@ -81,6 +82,7 @@ public class ContactCreationTests extends TestBase{
         //ставим свежесозданный id-шник, чтобы заменить дефолтный
         assertThat(after, CoreMatchers.equalTo(before.withAdded(
                 contact.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId()))));
+        assertThat(after, equalTo (before.withAdded(contact.withId(after.stream().mapToInt((c)->c.getId()).max().getAsInt()))));
     }
 
 
