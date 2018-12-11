@@ -7,6 +7,7 @@ import ru.stqa.pft.mantis.model.MailMessage;
 import ru.stqa.pft.mantis.model.UserData;
 
 import javax.mail.MessagingException;
+import javax.xml.rpc.ServiceException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Random;
@@ -15,8 +16,8 @@ import static org.testng.Assert.assertTrue;
 
 public class ChangePassTests extends TestBase {
     @Test
-    public void changePassword() throws IOException, MessagingException, ClassNotFoundException {
-
+    public void changePassword() throws IOException, MessagingException, ClassNotFoundException, ServiceException {
+        skipIfNotFixed (0000001);
         List<UserData> users = new DbHelper().users();
         int index = 0;
         do{
